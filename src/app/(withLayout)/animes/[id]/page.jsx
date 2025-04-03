@@ -10,7 +10,9 @@ const SingleAnime = () => {
   useEffect(() => {
     const fetchAnime = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/anime/${id}`);
+        const res = await fetch(
+          `https://anizen-server.onrender.com/api/anime/${id}`
+        );
         const data = await res.json();
         setAnime(data);
       } catch (error) {
