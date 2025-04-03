@@ -3,7 +3,6 @@ import Link from "next/link";
 const LatestAnime = async () => {
   const res = await fetch("https://anizen-server.onrender.com/api/anime");
   const animeData = await res.json();
-  console.log(animeData);
 
   return (
     <div className="w-full py-4 px-4 md:px-7 border-b-1 border-gray-500">

@@ -16,15 +16,12 @@ export default function Navbar() {
   }, []);
 
   const handleLogout = () => {
-    // Remove tokens from localStorage
-    const cookies = document.cookie.split(";");
     localStorage.removeItem("user");
-
     window.location.href = "/";
   };
 
   return (
-    <div className="navbar bg-[#0E0016] shadow-sm outline-2">
+    <div className="navbar bg-[#0E0016] shadow-sm outline-2 relative">
       <div className="navbar-start">
         {/* Menu Button */}
         <button onClick={() => setIsOpen(true)} className="btn btn-ghost">
@@ -44,14 +41,22 @@ export default function Navbar() {
           </svg>
         </button>
       </div>
-      <a href="/" className=" h-10 w-40 md:w-60 navbar-center gap-0">
+      <a href="/" className="h-10 w-40 md:w-60 navbar-center gap-0">
         <img src="https://i.ibb.co.com/CKQfh3SY/Anizen-Logo.png" alt="" />
       </a>
       <div className="navbar-end mr-2 md:mr-6">
-        <a href="/contact" className=" bg-[#161A20] text-white p-2 rounded">
+        <a href="/contact" className="bg-[#161A20] text-white p-2 rounded">
           Contact Us
         </a>
       </div>
+
+      {/* Sidebar Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
 
       {/* Sidebar */}
       <div
@@ -79,17 +84,20 @@ export default function Navbar() {
 
               <ul className="rounded-t-none p-2 mb-5">
                 {user?.role === "super-admin" ? (
-                  <li>
+                  <li onClick={() => setIsOpen(false)}>
                     <Link href="/admin/add-user">Add User</Link>
                   </li>
                 ) : null}
-                <li>
+                <li onClick={() => setIsOpen(false)}>
                   <Link href="/admin/view-anime">View Anime</Link>
                 </li>
-                <li>
+                <li onClick={() => setIsOpen(false)}>
                   <Link href="/admin/add-anime">Add Anime</Link>
                 </li>
-                <li>
+                <li onClick={() => setIsOpen(false)}>
+                  <Link href="/admin/add-schedule">Add Schedule</Link>
+                </li>
+                <li onClick={() => setIsOpen(false)}>
                   <button onClick={handleLogout}>LogOut</button>
                 </li>
               </ul>
@@ -97,29 +105,20 @@ export default function Navbar() {
           ) : null}
           <h1 className="text-gray-300 text-2xl font-bold mb-3">Categories</h1>
 
-          <li className="hover:text-red-500">
-            <a>Item 1</a>
+          <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
+            <a href="/animes">Anime</a>
           </li>
-          <li className="hover:text-red-500">
-            <a>Item 2</a>
+          <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
+            <a>Movies</a>
           </li>
-          <li className="hover:text-red-500">
-            <a>Item 3</a>
+          <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
+            <a>Animation & Cartoon</a>
           </li>
-          <li className="hover:text-red-500">
-            <a>Item 4</a>
+          <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
+            <a>Series</a>
           </li>
-          <li className="hover:text-red-500">
-            <a>Item 5</a>
-          </li>
-          <li className="hover:text-red-500">
-            <a>Item 6</a>
-          </li>
-          <li className="hover:text-red-500">
-            <a>Item 7</a>
-          </li>
-          <li className="hover:text-red-500">
-            <a>Item 8</a>
+          <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
+            <a>Tv Shows</a>
           </li>
         </ul>
       </div>
