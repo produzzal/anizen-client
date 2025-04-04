@@ -88,14 +88,18 @@ export default function Navbar() {
                     <Link href="/admin/add-user">Add User</Link>
                   </li>
                 ) : null}
-                <li onClick={() => setIsOpen(false)}>
-                  <Link href="/admin/view-anime">View Anime</Link>
-                </li>
+
                 <li onClick={() => setIsOpen(false)}>
                   <Link href="/admin/add-anime">Add Anime</Link>
                 </li>
                 <li onClick={() => setIsOpen(false)}>
                   <Link href="/admin/add-schedule">Add Schedule</Link>
+                </li>
+                <li onClick={() => setIsOpen(false)}>
+                  <Link href="/admin/view-anime">View Anime</Link>
+                </li>
+                <li onClick={() => setIsOpen(false)}>
+                  <Link href="/admin/view-visitor">View Visitor</Link>
                 </li>
                 <li onClick={() => setIsOpen(false)}>
                   <button onClick={handleLogout}>LogOut</button>

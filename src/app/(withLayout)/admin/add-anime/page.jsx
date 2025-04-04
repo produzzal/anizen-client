@@ -9,6 +9,7 @@ const AnimeForm = () => {
     quality: "",
     image: "",
     seriesName: "",
+    type: "",
     releaseYear: "",
     createdAt: "",
     rating: "",
@@ -136,6 +137,20 @@ const AnimeForm = () => {
           className="w-full p-2 rounded bg-gray-800"
           required
         />
+        <select
+          name="type"
+          value={anime.seriesType}
+          onChange={handleChange}
+          className="w-full p-2 rounded bg-gray-800 text-white"
+          required
+        >
+          <option value="">Select Type</option>
+          <option value="anime">Anime</option>
+          <option value="movie">Movie</option>
+          <option value="animation & cartoon">Animation & Cartoon</option>
+          <option value="tv series">Tv Series</option>
+        </select>
+
         <input
           type="number"
           name="releaseYear"
@@ -201,7 +216,6 @@ const AnimeForm = () => {
               onChange={(e) => handleEpisodeChange(index, e)}
               placeholder="Episode Number"
               className="w-full p-2 rounded bg-gray-800"
-              required
             />
             <input
               type="text"
@@ -210,7 +224,6 @@ const AnimeForm = () => {
               onChange={(e) => handleEpisodeChange(index, e)}
               placeholder="Episode Title"
               className="w-full p-2 rounded bg-gray-800"
-              required
             />
             <h4 className="text-md font-semibold">Download Links</h4>
             {["480p", "720p", "1080p"].map((quality) => (
@@ -223,7 +236,6 @@ const AnimeForm = () => {
                 }
                 placeholder={`${quality} Download Link`}
                 className="w-full p-2 rounded bg-gray-800"
-                required
               />
             ))}
           </div>
