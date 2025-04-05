@@ -1,13 +1,13 @@
 import Link from "next/link";
 
 const Animes = async () => {
-  const res = await fetch("https://anizen-server.onrender.com/api/anime");
+  const res = await fetch("https://anizen-server.onrender.com/api/tv-show");
   const animeData = await res.json();
 
   return (
     <div className="w-full py-4 px-4 md:px-7 border-b-1 border-gray-500">
       <h1 className="border-l-3 border-red-600 pl-3 mb-5 mt-15 text-xl font-bold">
-        All Animes That You Search For
+        All Tv Show That You Search For
       </h1>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
         {animeData?.map((anime) => (

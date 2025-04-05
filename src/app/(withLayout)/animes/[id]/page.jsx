@@ -39,9 +39,16 @@ const SingleAnime = () => {
         <h2 className=" text-sm md:text-xl font-serif text-gray-300">
           {anime.genres} (Hindi Dubbed)
         </h2>
-        <h2 className="font-bold text-2xl md:text-4xl mt-3 font-serif text-gray-300">
-          {anime.title} [Episode {lastItem?.episodeNumber} added !]
-        </h2>
+        {anime?.type === "anime" ? (
+          <h2 className="font-bold text-2xl md:text-4xl mt-3 font-serif text-gray-300">
+            {anime.title} [Episode {lastItem?.episodeNumber} added !]
+          </h2>
+        ) : (
+          <h2 className="font-bold text-2xl md:text-4xl mt-3 font-serif text-gray-300">
+            {anime.title}
+          </h2>
+        )}
+
         <p className="mt-2 text-sm text-gray-400">{lastItem.createdAt}</p>
         <p className="text-center mt-8">{anime.title}</p>
         <img className="mt-5 mx-auto h-88 w-72" src={anime.image} alt="" />
@@ -74,25 +81,27 @@ const SingleAnime = () => {
           Download Links
         </h1>
         <div>
-          {anime.episodes.map((episode) => (
+          {anime?.episodes.map((episode) => (
             <div className="border-b-1 " key={episode.episodeNumber}>
-              <h1 className="text-xl font-bold py-5 text-center">
-                <span className="text-yellow-500">
-                  Episode {episode.episodeNumber}
-                </span>{" "}
-                ― <span className="text-gray-400">{episode.title}</span>
-              </h1>
+              {anime?.type === "anime" ? (
+                <h1 className="text-xl font-bold py-5 text-center">
+                  <span className="text-yellow-500">
+                    Episode {episode.episodeNumber}
+                  </span>{" "}
+                  ― <span className="text-gray-400">{episode.title}</span>
+                </h1>
+              ) : null}
               <div className="text-xl text-center pb-5">
                 <Link
                   className="underline hover:text-orange-500 focus:text-orange-500"
-                  href="/"
+                  href={episode?.downloadLinks["480p"]}
                 >
                   {qualities[2]} Drive{" "}
                 </Link>{" "}
                 <span className="text-red-600">||</span>
                 <Link
                   className="underline hover:text-orange-500 focus:text-orange-500"
-                  href="/"
+                  href={episode?.downloadLinks["720p"]}
                 >
                   {" "}
                   {qualities[1]} Drive{" "}
@@ -100,7 +109,7 @@ const SingleAnime = () => {
                 <span className="text-red-600">||</span>
                 <Link
                   className="underline  hover:text-orange-500 focus:text-orange-500"
-                  href="/"
+                  href={episode?.downloadLinks["1080p"]}
                 >
                   {" "}
                   {qualities[0]} Drive{" "}
@@ -109,10 +118,12 @@ const SingleAnime = () => {
             </div>
           ))}
         </div>
-        <h1 className="italic text-center mt-8">
-          <span className="text-md font-bold text-red-600">Note: </span>
-          More Episode Will Be Added Weekly...
-        </h1>
+        {anime?.type === "anime" ? (
+          <h1 className="italic text-center mt-8">
+            <span className="text-md font-bold text-red-600">Note: </span>
+            More Episode Will Be Added Weekly...
+          </h1>
+        ) : null}
         <h1 className="text-center border-b-1 py-10">
           So Stay Tune With Us For Better Updates...
           <Link

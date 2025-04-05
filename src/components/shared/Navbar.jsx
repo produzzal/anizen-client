@@ -113,16 +113,16 @@ export default function Navbar() {
             <a href="/animes">Anime</a>
           </li>
           <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
-            <a>Movies</a>
+            <a href="/movies">Movies</a>
           </li>
           <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
-            <a>Animation & Cartoon</a>
+            <a href="/animation">Animation & Cartoon</a>
           </li>
           <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
-            <a>Series</a>
+            <a href="/series">Series</a>
           </li>
           <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
-            <a>Tv Shows</a>
+            <a href="tv-show">Tv Shows</a>
           </li>
         </ul>
       </div>

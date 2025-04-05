@@ -148,7 +148,8 @@ const AnimeForm = () => {
           <option value="anime">Anime</option>
           <option value="movie">Movie</option>
           <option value="animation & cartoon">Animation & Cartoon</option>
-          <option value="tv series">Tv Series</option>
+          <option value="series">Series</option>
+          <option value="tv-show">Tv Show</option>
         </select>
 
         <input

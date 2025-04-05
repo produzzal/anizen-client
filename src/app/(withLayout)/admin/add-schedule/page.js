@@ -29,7 +29,6 @@ export default function AddSchedule() {
       if (res.ok) {
         toast.success("Schedule Added Successfully!");
         setSchedule({ day: "", time: "", title: "", type: "New Episode" });
-        console.log(res);
       }
     } catch (err) {
       toast.error("Failed to Add Schedule");

@@ -4,76 +4,11 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Featured = () => {
-  const movies = [
-    {
-      id: 1,
-      title: "The Colors of Fire (2022)",
-      year: "2022",
-      image:
-        "https://i.ibb.co.com/ZRtX5q7t/d0-Kslr-Ou-Qk6as-XCGxzb-Ca8-A3d-ZU.jpg",
-      type: "MOVIE",
-    },
-    {
-      id: 2,
-      title: "Gamera - Rebirth",
-      year: "Mar 28, 2025",
-      image:
-        "https://i.ibb.co.com/KcxMN1bk/41-NGOCSj-DGv-Ny-CSR8-LP0-Argegx-H.jpg",
-      type: "MOVIE",
-    },
-    {
-      id: 3,
-      title: "Another Movie",
-      year: "2023",
-      image:
-        "https://i.ibb.co.com/YTJBzDD7/2l-BBZb-BXEeu-Ck-Rrk4rgi0017-NKu-1.jpg",
-      type: "MOVIE",
-    },
-    {
-      id: 4,
-      title: "Another Movie",
-      year: "2023",
-      image:
-        "https://i.ibb.co.com/YTJBzDD7/2l-BBZb-BXEeu-Ck-Rrk4rgi0017-NKu-1.jpg",
-      type: "MOVIE",
-    },
-    {
-      id: 5,
-      title: "Another Movie",
-      year: "2023",
-      image:
-        "https://i.ibb.co.com/YTJBzDD7/2l-BBZb-BXEeu-Ck-Rrk4rgi0017-NKu-1.jpg",
-      type: "MOVIE",
-    },
-    {
-      id: 6,
-      title: "Another Movie",
-      year: "2023",
-      image:
-        "https://i.ibb.co.com/YTJBzDD7/2l-BBZb-BXEeu-Ck-Rrk4rgi0017-NKu-1.jpg",
-      type: "MOVIE",
-    },
-    {
-      id: 7,
-      title: "Another Movie",
-      year: "2023",
-      image:
-        "https://i.ibb.co.com/YTJBzDD7/2l-BBZb-BXEeu-Ck-Rrk4rgi0017-NKu-1.jpg",
-      type: "MOVIE",
-    },
-    {
-      id: 8,
-      title: "Another Movie",
-      year: "2023",
-      image:
-        "https://i.ibb.co.com/YTJBzDD7/2l-BBZb-BXEeu-Ck-Rrk4rgi0017-NKu-1.jpg",
-      type: "MOVIE",
-    },
-  ];
-
   const [animeList, setAnimeList] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchAnime = async () => {
@@ -89,6 +24,10 @@ const Featured = () => {
 
     fetchAnime();
   }, []);
+
+  const handleClick = (animeLink) => {
+    router.push(`/animes/${animeLink}`);
+  };
 
   return (
     <div className="w-full py-4 px-4 md:px-7 border-b-1 border-gray-500">
@@ -110,7 +49,12 @@ const Featured = () => {
       >
         {animeList.slice(0, 10).map((anime) => (
           <SwiperSlide key={anime._id}>
-            <div className="relative w-full h-[200px] md:h-[260px]">
+            <div
+              onClick={() => {
+                handleClick(anime._id);
+              }}
+              className="relative w-full h-[200px] md:h-[260px]"
+            >
               <img
                 src={anime.image}
                 alt="Cover"

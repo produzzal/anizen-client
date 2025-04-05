@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 export default function Schedule() {
   const [scheduleData, setScheduleData] = useState({});
-  console.log(scheduleData);
 
   useEffect(() => {
     const fetchSchedule = async () => {
