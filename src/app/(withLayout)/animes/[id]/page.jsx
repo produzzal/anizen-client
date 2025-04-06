@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/app/loading";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -6,6 +7,7 @@ import React, { useEffect, useState } from "react";
 const SingleAnime = () => {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAnime = async () => {
@@ -17,14 +19,19 @@ const SingleAnime = () => {
         setAnime(data);
       } catch (error) {
         console.error("Error fetching anime data:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchAnime();
   }, [id]);
-  console.log(anime);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   if (!anime) {
-    return <div>Anime not found</div>; // If no anime is found
+    return <div>Anime not found</div>;
   }
   const lastItem = anime?.episodes[anime.episodes.length - 1];
   const qualities = anime.quality.split(", ");
@@ -64,16 +71,29 @@ const SingleAnime = () => {
         <h1 className="text-center text-3xl text-yellow-500 mt-5 underline">
           Screenshots
         </h1>
-        <div className="grid md:grid-cols-2 mt-4 w-full md:w-[700px] mx-auto">
-          {anime.screenshots.map((screenshot, index) => (
-            <img
-              key={index}
-              src={screenshot}
-              alt={`Screenshot ${index + 1}`}
-              className="md:w-[350px] md:h-[250px]"
-            />
-          ))}
-        </div>
+        {anime.type === "anime" ? (
+          <div className="grid md:grid-cols-2 mt-4 w-full md:w-[700px] mx-auto">
+            {anime.screenshots.map((screenshot, index) => (
+              <img
+                key={index}
+                src={screenshot}
+                alt={`Screenshot ${index + 1}`}
+                className="md:w-[350px] md:h-[250px]"
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-2 mt-4 w-full md:w-[700px] mx-auto">
+            {anime.screenshots.map((screenshot, index) => (
+              <img
+                key={index}
+                src={screenshot}
+                alt={`Screenshot ${index + 1}`}
+                className="md:w-[350px] md:h-[250px]"
+              />
+            ))}
+          </div>
+        )}
         <Link href="/" className="flex justify-center underline text-2xl mt-7">
           [ How to Download ]
         </Link>

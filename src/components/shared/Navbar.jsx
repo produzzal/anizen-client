@@ -27,7 +27,7 @@ export default function Navbar() {
         <button onClick={() => setIsOpen(true)} className="btn btn-ghost">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 md:h-10 w-6 md:w-10 text-white"
+            className="h-7 md:h-10 w-7 md:w-10 text-white"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -41,8 +41,8 @@ export default function Navbar() {
           </svg>
         </button>
       </div>
-      <a href="/" className="h-10 w-40 md:w-60 navbar-center gap-0">
-        <img src="https://i.ibb.co.com/CKQfh3SY/Anizen-Logo.png" alt="" />
+      <a href="/" className="h-10 w-40 md:w-60 navbar-center gap-0 p-3 md:p-5">
+        <img src="https://i.ibb.co.com/DPRk96gL/Anizen-Logo.png" alt="" />
       </a>
       <div className="navbar-end mr-2 md:mr-6">
         <a href="/contact" className="bg-[#161A20] text-white p-2 rounded">
