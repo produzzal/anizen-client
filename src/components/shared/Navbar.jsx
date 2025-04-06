@@ -82,26 +82,26 @@ export default function Navbar() {
                 Dashboard
               </summary>
 
-              <ul className="rounded-t-none p-2 mb-5">
+              <ul className="rounded-t-none p-2 mb-5 font-serif">
                 {user?.role === "super-admin" ? (
-                  <li onClick={() => setIsOpen(false)}>
+                  <li className="border-b-1" onClick={() => setIsOpen(false)}>
                     <Link href="/admin/add-user">Add User</Link>
                   </li>
                 ) : null}
 
-                <li onClick={() => setIsOpen(false)}>
+                <li className="border-b-1" onClick={() => setIsOpen(false)}>
                   <Link href="/admin/add-anime">Add Anime</Link>
                 </li>
-                <li onClick={() => setIsOpen(false)}>
+                <li className="border-b-1" onClick={() => setIsOpen(false)}>
                   <Link href="/admin/add-schedule">Add Schedule</Link>
                 </li>
-                <li onClick={() => setIsOpen(false)}>
+                <li className="border-b-1" onClick={() => setIsOpen(false)}>
                   <Link href="/admin/view-anime">View Anime</Link>
                 </li>
-                <li onClick={() => setIsOpen(false)}>
+                <li className="border-b-1" onClick={() => setIsOpen(false)}>
                   <Link href="/admin/view-visitor">View Visitor</Link>
                 </li>
-                <li onClick={() => setIsOpen(false)}>
+                <li className="border-b-1" onClick={() => setIsOpen(false)}>
                   <button onClick={handleLogout}>LogOut</button>
                 </li>
               </ul>
@@ -109,19 +109,34 @@ export default function Navbar() {
           ) : null}
           <h1 className="text-gray-300 text-2xl font-bold mb-3">Categories</h1>
 
-          <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
+          <li
+            onClick={() => setIsOpen(false)}
+            className="hover:text-red-500 font-serif border-b-1"
+          >
             <a href="/animes">Anime</a>
           </li>
-          <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
+          <li
+            onClick={() => setIsOpen(false)}
+            className="hover:text-red-500 font-serif border-b-1"
+          >
             <a href="/movies">Movies</a>
           </li>
-          <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
+          <li
+            onClick={() => setIsOpen(false)}
+            className="hover:text-red-500 font-serif border-b-1"
+          >
             <a href="/animation">Animation & Cartoon</a>
           </li>
-          <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
+          <li
+            onClick={() => setIsOpen(false)}
+            className="hover:text-red-500 font-serif border-b-1"
+          >
             <a href="/series">Series</a>
           </li>
-          <li onClick={() => setIsOpen(false)} className="hover:text-red-500">
+          <li
+            onClick={() => setIsOpen(false)}
+            className="hover:text-red-500 font-serif border-b-1"
+          >
             <a href="tv-show">Tv Shows</a>
           </li>
         </ul>

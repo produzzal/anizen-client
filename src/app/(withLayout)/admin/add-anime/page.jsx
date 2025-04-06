@@ -60,6 +60,13 @@ const AnimeForm = () => {
     }));
   };
 
+  const removeEpisode = (index) => {
+    setAnime((prev) => {
+      const newEpisodes = prev.episodes.filter((_, i) => i !== index);
+      return { ...prev, episodes: newEpisodes };
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -239,6 +246,13 @@ const AnimeForm = () => {
                 className="w-full p-2 rounded bg-gray-800"
               />
             ))}
+            <button
+              type="button"
+              onClick={() => removeEpisode(index)}
+              className="bg-red-500 text-white px-4 py-2 rounded"
+            >
+              Remove Episode
+            </button>
           </div>
         ))}
 

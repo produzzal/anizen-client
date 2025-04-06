@@ -1,11 +1,12 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 const AnimeForm = () => {
   const { updateId } = useParams();
+  const router = useRouter();
 
   const [anime, setAnime] = useState({
     title: "",
@@ -13,6 +14,7 @@ const AnimeForm = () => {
     quality: "",
     image: "",
     seriesName: "",
+    type: "",
     releaseYear: "",
     rating: "",
     languages: "",
@@ -35,7 +37,7 @@ const AnimeForm = () => {
         );
         if (res.ok) {
           const data = await res.json();
-          const { _id, ...animeData } = data; // `_id` বাদ দিন
+          const { _id, ...animeData } = data;
           setAnime(animeData);
         }
       } catch (error) {
@@ -93,6 +95,14 @@ const AnimeForm = () => {
     }));
   };
 
+  // Remove episode
+  const removeEpisode = (indexToRemove) => {
+    setAnime((prev) => ({
+      ...prev,
+      episodes: prev.episodes.filter((_, index) => index !== indexToRemove),
+    }));
+  };
+
   // Submit form with PATCH request
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -115,6 +125,9 @@ const AnimeForm = () => {
       if (response.ok) {
         const result = await response.json();
         toast.success("Updated successfully");
+        setTimeout(() => {
+          router.push("/admin/view-anime");
+        }, 2000);
       } else {
         toast.error("Updated failed");
       }
@@ -180,6 +193,20 @@ const AnimeForm = () => {
           onChange={handleChange}
           className="w-full p-2 rounded bg-gray-800"
         />
+        <label className="block">Type</label>
+        <select
+          name="type"
+          value={anime.type}
+          onChange={handleChange}
+          className="w-full p-2 rounded bg-gray-800 text-white"
+        >
+          <option value="">Select Type</option>
+          <option value="anime">Anime</option>
+          <option value="movie">Movie</option>
+          <option value="animation & cartoon">Animation & Cartoon</option>
+          <option value="series">Series</option>
+          <option value="tv-show">Tv Show</option>
+        </select>
 
         <label className="block">Rating</label>
         <input
@@ -247,6 +274,13 @@ const AnimeForm = () => {
                 />
               </div>
             ))}
+            <button
+              type="button"
+              onClick={() => removeEpisode(index)}
+              className="bg-red-600 text-white px-3 py-1 rounded mt-2"
+            >
+              Remove Episode
+            </button>
           </div>
         ))}
 

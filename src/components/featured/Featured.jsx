@@ -13,10 +13,14 @@ const Featured = () => {
   useEffect(() => {
     const fetchAnime = async () => {
       try {
-        const res = await fetch("https://anizen-server.onrender.com/api/anime");
+        const res = await fetch(
+          "https://anizen-server.onrender.com/api/all-anime"
+        );
         if (!res.ok) throw new Error("Failed to fetch anime");
         const data = await res.json();
-        setAnimeList(data);
+        const shuffled = data.sort(() => 0.5 - Math.random());
+        const random = shuffled.slice(0, 10);
+        setAnimeList(random);
       } catch (error) {
         console.error("Error fetching anime:", error);
       }

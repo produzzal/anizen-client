@@ -15,7 +15,9 @@ const DemoSlider = () => {
       try {
         const res = await fetch("https://anizen-server.onrender.com/api/movie");
         const data = await res.json();
-        setMovies(data);
+        const shuffled = data.sort(() => 0.5 - Math.random());
+        const random = shuffled.slice(0, 5);
+        setMovies(random);
       } catch (error) {
         console.error("Failed to fetch movies:", error);
       }

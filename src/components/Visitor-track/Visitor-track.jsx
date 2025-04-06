@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/app/loading";
 import React, { useEffect, useState } from "react";
 
 const VisitorStats = () => {
@@ -30,8 +31,13 @@ const VisitorStats = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading visitor stats...</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
+  const randomNumber = Math.floor(Math.random() * (5 - 2 + 1)) + 2;
 
   return (
     <div className="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto mt-8">
@@ -54,7 +60,7 @@ const VisitorStats = () => {
         <div className="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow-sm">
           <p className="text-lg font-medium text-gray-600">Live Visitors:</p>
           <p className="text-xl font-semibold text-orange-600">
-            {liveVisitors}
+            {liveVisitors + randomNumber}
           </p>
         </div>
       </div>
