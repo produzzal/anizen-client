@@ -83,7 +83,7 @@ const SingleAnime = () => {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-2 mt-4 w-full md:w-[700px] mx-auto">
+          <div className="grid md:grid-cols-2 mt-4 w-full md:w-[700px] mx-auto">
             {anime.screenshots.map((screenshot, index) => (
               <img
                 key={index}

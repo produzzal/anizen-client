@@ -1,7 +1,10 @@
+import next from "next";
 import Link from "next/link";
 
 const LatestAnime = async () => {
-  const res = await fetch("https://anizen-server.onrender.com/api/anime");
+  const res = await fetch("https://anizen-server.onrender.com/api/anime", {
+    next: { revalidate: 10 },
+  });
   const data = await res.json();
   const animeData = data.reverse().slice(0, 30);
 

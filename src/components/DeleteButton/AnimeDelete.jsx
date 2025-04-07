@@ -6,6 +6,11 @@ const DeleteButton = ({ animeId }) => {
   const handleDelete = async () => {
     if (!animeId) return toast.error("Invalid anime ID!");
 
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this anime?"
+    );
+    if (!confirmDelete) return;
+
     try {
       const response = await fetch(
         `https://anizen-server.onrender.com/api/anime/${animeId}`,
@@ -13,7 +18,6 @@ const DeleteButton = ({ animeId }) => {
           method: "DELETE",
         }
       );
-      console.log(response);
 
       if (response.ok) {
         toast.success("Anime deleted successfully!");
