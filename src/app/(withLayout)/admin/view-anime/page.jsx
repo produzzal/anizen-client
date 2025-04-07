@@ -2,7 +2,9 @@ import DeleteButton from "@/components/DeleteButton/AnimeDelete";
 import Link from "next/link";
 
 const page = async () => {
-  const res = await fetch("https://anizen-server.onrender.com/api/all-anime");
+  const res = await fetch("https://anizen-server.onrender.com/api/all-anime", {
+    next: { revalidate: 10 },
+  });
   const animeData = await res.json();
   return (
     <div className="anime-management-container p-4">
