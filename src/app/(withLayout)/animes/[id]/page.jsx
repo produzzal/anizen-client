@@ -7,13 +7,38 @@ import React, { useEffect, useState } from "react";
 const SingleAnime = () => {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
+  const [relatedAnime, setRelatedAnime] = useState(null);
   const [loading, setLoading] = useState(true);
+  console.log(relatedAnime);
+
+  useEffect(() => {
+    const fetchRelatedAnime = async () => {
+      try {
+        const res = await fetch(
+          `https://anizen-server.onrender.com/api/all-anime`,
+          {
+            next: { revalidate: 10 },
+          }
+        );
+        const data = await res.json();
+        const shuffled = data.sort(() => 0.5 - Math.random());
+        const random = shuffled.slice(0, 3);
+        setRelatedAnime(random);
+      } catch (error) {
+        console.error("Error fetching anime data:", error);
+      }
+    };
+    fetchRelatedAnime();
+  }, []);
 
   useEffect(() => {
     const fetchAnime = async () => {
       try {
         const res = await fetch(
-          `https://anizen-server.onrender.com/api/anime/${id}`
+          `https://anizen-server.onrender.com/api/anime/${id}`,
+          {
+            next: { revalidate: 10 },
+          }
         );
         const data = await res.json();
         setAnime(data);
@@ -148,7 +173,9 @@ const SingleAnime = () => {
           So Stay Tune With Us For Better Updates...
           <Link
             className="underline font-bold hover:text-orange-500"
-            href="/telegram"
+            href="https://t.me/pro_d_uzzal
+"
+            target="_blank"
           >
             Follow Us On Telegram
           </Link>
@@ -157,39 +184,25 @@ const SingleAnime = () => {
 
       {/* Second div (remaining width) */}
       <div className="flex-1 p-4">
-        <h1 className="text-center text-xl font-bold text-gray-300">
+        <h1 className="text-center text-xl mb-5 font-bold text-gray-300">
           Related More Actions:
         </h1>
-        <div className="relative w-full h-[200px] md:h-[260px]">
-          <img
-            src={"https://i.ibb.co.com/3Y9KSDZn/download.jpg"}
-            alt="Cover"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute flex bg-opacity-1 text-white">
-            <p className="text-3xl p-1">One piece</p>
-          </div>
-        </div>
-        <div className="my-10 relative w-full h-[200px] md:h-[260px]">
-          <img
-            src={"https://i.ibb.co.com/svCdpy1y/download.jpg"}
-            alt="Cover"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute flex bg-opacity-1 text-white">
-            <p className="text-3xl p-1">Demon Slayer</p>
-          </div>
-        </div>
-        <div className=" relative w-full h-[200px] md:h-[260px]">
-          <img
-            src={"https://i.ibb.co.com/Y7Y4zxxS/download.jpg"}
-            alt="Cover"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute flex bg-opacity-1 text-white">
-            <p className="text-3xl p-1">Bleach</p>
-          </div>
-        </div>
+        {relatedAnime?.map((anime) => (
+          <Link key={anime._id} href={`/animes/${anime._id}`}>
+            <div className="relative w-full h-[200px] md:h-[260px] mb-5">
+              <img
+                src={anime.image}
+                alt="Cover"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute flex bg-opacity-1 text-white">
+                <p className="text-xl p-1 bg-black/10 px-2 py-1 shadow-lg text-center ">
+                  {anime.seriesName}
+                </p>
+              </div>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

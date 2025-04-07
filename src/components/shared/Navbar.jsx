@@ -20,6 +20,11 @@ export default function Navbar() {
     window.location.href = "/";
   };
 
+  const scrollToFooter = () => {
+    const footer = document.getElementById("footer");
+    footer.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="navbar bg-[#0E0016] shadow-sm outline-2 relative">
       <div className="navbar-start">
@@ -45,7 +50,10 @@ export default function Navbar() {
         <img src="https://i.ibb.co.com/DPRk96gL/Anizen-Logo.png" alt="" />
       </a>
       <div className="navbar-end mr-2 md:mr-6">
-        <a href="/contact" className="bg-[#161A20] text-white p-2 rounded">
+        <a
+          onClick={scrollToFooter}
+          className="bg-[#161A20] text-white p-2 rounded"
+        >
           Contact Us
         </a>
       </div>

@@ -58,7 +58,7 @@ const DemoSlider = () => {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0  bg-opacity-1 text-white flex flex-col justify-end">
-                <p className="text-xl pl-4 bg-black/10 px-2 py-1 shadow-lg">
+                <p className="text-xl pl-4 font-sans bg-black/10 px-2 py-1 shadow-lg">
                   {movie.seriesName}
                 </p>
                 <div className="flex justify-between">
