@@ -115,7 +115,6 @@ const AnimeForm = () => {
           onChange={handleChange}
           placeholder="Genres"
           className="w-full p-2 rounded bg-gray-800"
-          required
         />
         <input
           type="text"
@@ -166,7 +165,6 @@ const AnimeForm = () => {
           onChange={handleChange}
           placeholder="Release Year"
           className="w-full p-2 rounded bg-gray-800"
-          required
         />
         <input
           type="text"
@@ -175,7 +173,6 @@ const AnimeForm = () => {
           onChange={handleChange}
           placeholder="Created At"
           className="w-full p-2 rounded bg-gray-800"
-          required
         />
 
         <input
@@ -185,7 +182,6 @@ const AnimeForm = () => {
           onChange={handleChange}
           placeholder="Rating"
           className="w-full p-2 rounded bg-gray-800"
-          required
         />
         <input
           type="text"
@@ -194,7 +190,6 @@ const AnimeForm = () => {
           onChange={handleChange}
           placeholder="Languages"
           className="w-full p-2 rounded bg-gray-800"
-          required
         />
 
         <h3 className="text-lg font-semibold">Screenshots</h3>
@@ -210,7 +205,6 @@ const AnimeForm = () => {
             }}
             placeholder={`Screenshot ${index + 1} URL`}
             className="w-full p-2 rounded bg-gray-800"
-            required
           />
         ))}
 
