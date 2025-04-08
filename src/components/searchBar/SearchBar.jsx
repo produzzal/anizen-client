@@ -12,7 +12,7 @@ const SearchBar = () => {
     const fetchAnimes = async () => {
       try {
         const response = await fetch(
-          "https://anizen-server.onrender.com/api/anime"
+          "https://anizen-server.onrender.com/api/all-anime"
         );
         const data = await response.json();
         setAnimes(data);

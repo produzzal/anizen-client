@@ -69,7 +69,9 @@ const Featured = () => {
               </div>
               <div className="absolute inset-0  bg-opacity-1 text-white flex flex-col justify-end">
                 <div className="flex justify-end">
-                  <p className="text-[12px] bg-gray-600 p-1">⭐ 7</p>
+                  <p className="text-[12px] bg-gray-600 p-1">
+                    ⭐ {anime.rating}
+                  </p>
                 </div>
               </div>
               <div></div>
